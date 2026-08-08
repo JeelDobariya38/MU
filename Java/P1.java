@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.sql.*;
 
-
 public class P1 {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,7 +27,7 @@ public class P1 {
                 System.out.print("city> ");
                 String city = sc.next();
                 insertRecords(conn, name, age, city);
-            } else if(input == 2) {
+            } else if (input == 2) {
                 displayRecords(conn);
             } else {
                 System.out.println("Error: Invaild Input!!!");
@@ -46,15 +45,14 @@ public class P1 {
 
         // 1. Create table
         st.execute(
-            """
-            CREATE TABLE IF NOT EXISTS emp (
-                id INTEGER AUTO_INCREMENT PRIMARY KEY, 
-                name VARCHAR(50), 
-                age INTEGER, 
-                city VARCHAR(50)
-            );
-            """
-        );
+                """
+                        CREATE TABLE IF NOT EXISTS emp (
+                            id INTEGER AUTO_INCREMENT PRIMARY KEY,
+                            name VARCHAR(50),
+                            age INTEGER,
+                            city VARCHAR(50)
+                        );
+                        """);
     }
 
     private static void displayRecords(Connection conn) throws SQLException {
@@ -63,7 +61,8 @@ public class P1 {
 
         System.out.println("--- Records ---");
         while (rs.next()) {
-            System.out.println(rs.getString("name") + ", " + rs.getString("age") + ", " + rs.getString("city"));
+            System.out.println(rs.getString("name") + ", " + rs.getString("age") + ", "
+                    + rs.getString("city"));
         }
     }
 

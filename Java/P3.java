@@ -1,547 +1,312 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import javax.swing.*;
+import java.awt.*;
 
-/**
- *
- * @author Dev Padaliya
- */
-public class P3 extends javax.swing.JFrame {
+public class P3 extends JFrame {
+    private JLabel enrollmentLabel;
+    private JLabel nameLabel;
+    private JLabel emailLabel;
+    private JLabel passwordLabel;
+    private JLabel classLabel;
+    private JLabel genderLabel;
+    private JLabel addressLabel;
 
-        private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(P3.class.getName());
+    private JTextField enrollmentField;
+    private JTextField nameField;
+    private JTextField emailField;
+    private JPasswordField passwordField;
 
-        /**
-         * Creates new form p3
-         */
-        public P3() {
-                initComponents();
+    private JComboBox<String> classComboBox;
+
+    private JRadioButton maleRadioButton;
+    private JRadioButton femaleRadioButton;
+
+    private JTextArea addressArea;
+
+    private JButton submitButton;
+
+    private ButtonGroup genderGroup;
+
+    public P3() {
+        setTitle("Student Registration Form");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Create labels
+        enrollmentLabel = new JLabel("Enrollment No:");
+        nameLabel = new JLabel("Name:");
+        emailLabel = new JLabel("Email:");
+        passwordLabel = new JLabel("Password:");
+        classLabel = new JLabel("Class:");
+        genderLabel = new JLabel("Gender:");
+        addressLabel = new JLabel("Address:");
+
+        // Create textfields
+        enrollmentField = new JTextField(20);
+        nameField = new JTextField(20);
+        emailField = new JTextField(20);
+
+        // Password field
+        passwordField = new JPasswordField(20);
+
+        // Class combo box
+        classComboBox = new JComboBox<>(
+                new String[] { "EV1", "EV2", "EV3", "EV4" });
+
+        // Gender radio buttons
+        maleRadioButton = new JRadioButton("Male");
+        femaleRadioButton = new JRadioButton("Female");
+
+        genderGroup = new ButtonGroup();
+        genderGroup.add(maleRadioButton);
+        genderGroup.add(femaleRadioButton);
+
+        // Address text area
+        addressArea = new JTextArea(5, 20);
+        addressArea.setLineWrap(true);
+        addressArea.setWrapStyleWord(true);
+
+        // Scroll pane for address
+        JScrollPane addressScrollPane = new JScrollPane(addressArea);
+
+        // Submit button
+        submitButton = new JButton("Submit");
+
+        // Add action listener
+        submitButton.addActionListener(e -> submitForm());
+
+        // Create main panel
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setBorder(
+                BorderFactory.createEmptyBorder(25, 25, 25, 25));
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.insets = new Insets(8, 8, 8, 8);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Enrollment Number
+        gbc.gridy = 0;
+
+        gbc.gridx = 0;
+        mainPanel.add(enrollmentLabel, gbc);
+
+        gbc.gridx = 1;
+        mainPanel.add(enrollmentField, gbc);
+
+        // Name
+        gbc.gridy = 1;
+
+        gbc.gridx = 0;
+        mainPanel.add(nameLabel, gbc);
+
+        gbc.gridx = 1;
+        mainPanel.add(nameField, gbc);
+
+        // Email
+        gbc.gridy = 2;
+
+        gbc.gridx = 0;
+        mainPanel.add(emailLabel, gbc);
+
+        gbc.gridx = 1;
+        mainPanel.add(emailField, gbc);
+
+        // Password
+        gbc.gridy = 3;
+
+        gbc.gridx = 0;
+        mainPanel.add(passwordLabel, gbc);
+
+        gbc.gridx = 1;
+        mainPanel.add(passwordField, gbc);
+
+        // Class
+        gbc.gridy = 4;
+
+        gbc.gridx = 0;
+        mainPanel.add(classLabel, gbc);
+
+        gbc.gridx = 1;
+        mainPanel.add(classComboBox, gbc);
+
+        // Gender
+        gbc.gridy = 5;
+
+        gbc.gridx = 0;
+        mainPanel.add(genderLabel, gbc);
+
+        JPanel genderPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+        genderPanel.add(maleRadioButton);
+        genderPanel.add(femaleRadioButton);
+
+        gbc.gridx = 1;
+        mainPanel.add(genderPanel, gbc);
+
+        // Address
+        gbc.gridy = 6;
+
+        gbc.gridx = 0;
+        gbc.anchor = GridBagConstraints.NORTH;
+        mainPanel.add(addressLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(addressScrollPane, gbc);
+
+        // Submit button
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        mainPanel.add(submitButton, gbc);
+
+        // Add main panel to frame
+        add(mainPanel);
+
+        // Set window size
+        setSize(500, 500);
+
+        // Center the window
+        setLocationRelativeTo(null);
+    }
+
+    /**
+     * Handles form submission and validation
+     */
+    private void submitForm() {
+        String erno = enrollmentField.getText().trim();
+        String name = nameField.getText().trim();
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
+        String address = addressArea.getText().trim();
+
+        String gender = "";
+        if (maleRadioButton.isSelected()) {
+            gender = "Male";
+        } else if (femaleRadioButton.isSelected()) {
+            gender = "Female";
         }
 
-        /**
-         * This method is called from within the constructor to initialize the form.
-         * WARNING: Do NOT modify this code. The content of this method is always
-         * regenerated by the Form Editor.
-         */
-        @SuppressWarnings("unchecked")
-        // <editor-fold defaultstate="collapsed" desc="Generated Code">
-        private void initComponents() {
+        String selectedClass = classComboBox.getSelectedItem().toString();
 
-                buttonGroup1 = new javax.swing.ButtonGroup();
-                jTextField1 = new javax.swing.JTextField();
-                jTextField2 = new javax.swing.JTextField();
-                jTextField3 = new javax.swing.JTextField();
-                jTextField4 = new javax.swing.JTextField();
-                jTextField5 = new javax.swing.JTextField();
-                jTextField6 = new javax.swing.JTextField();
-                jTextField7 = new javax.swing.JTextField();
-                jTextField8 = new javax.swing.JTextField();
-                jRadioButton1 = new javax.swing.JRadioButton();
-                jRadioButton2 = new javax.swing.JRadioButton();
-                jTextField9 = new javax.swing.JTextField();
-                jTextField10 = new javax.swing.JTextField();
-                jTextField11 = new javax.swing.JTextField();
-                jScrollPane1 = new javax.swing.JScrollPane();
-                jTextArea1 = new javax.swing.JTextArea();
-                jTextField12 = new javax.swing.JTextField();
-                jComboBox1 = new javax.swing.JComboBox<>();
-                jButton1 = new javax.swing.JButton();
+        // 1. Enrollment Number Validation
+        if (erno.isBlank() || !erno.matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Enrollment Number should contain only numbers",
+                    "Validation Error",
+                    JOptionPane.ERROR_MESSAGE);
 
-                setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-                jTextField1.setText("Erno:");
-                jTextField1.addActionListener(this::jTextField1ActionPerformed);
-
-                jTextField2.setText("Name:");
-                jTextField2.addActionListener(this::jTextField2ActionPerformed);
-
-                jTextField5.setText("Email:");
-                jTextField5.addActionListener(this::jTextField5ActionPerformed);
-
-                jTextField7.setText("Dob:");
-                jTextField7.addActionListener(this::jTextField7ActionPerformed);
-
-                jTextField8.setText("Gender");
-                jTextField8.addActionListener(this::jTextField8ActionPerformed);
-
-                buttonGroup1.add(jRadioButton1);
-                jRadioButton1.setText("Male");
-                jRadioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-                buttonGroup1.add(jRadioButton2);
-                jRadioButton2.setText("Female");
-                jRadioButton2.addActionListener(this::jRadioButton2ActionPerformed);
-
-                jTextField9.setText("Password:");
-                jTextField9.addActionListener(this::jTextField9ActionPerformed);
-
-                jTextField11.setText("Address:");
-                jTextField11.addActionListener(this::jTextField11ActionPerformed);
-
-                jTextArea1.setColumns(20);
-                jTextArea1.setRows(5);
-                jScrollPane1.setViewportView(jTextArea1);
-
-                jTextField12.setText("Class:");
-                jTextField12.addActionListener(this::jTextField12ActionPerformed);
-
-                jComboBox1.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(new String[] { "EV1", "EV2", "EV3", "EV4" }));
-
-                jButton1.setText("Submit");
-                jButton1.addActionListener(this::jButton1ActionPerformed);
-
-                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-                getContentPane().setLayout(layout);
-                layout.setHorizontalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                .addGap(115, 115, 115)
-                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                .addComponent(jTextField12,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                71,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(jComboBox1,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                .addComponent(jTextField8,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                71,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                .addGap(18, 18, 18)
-                                                                                                                                .addComponent(jRadioButton1,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                98,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(jRadioButton2,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                73,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                .addComponent(jTextField5,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                71,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(jTextField6,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                132,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                                .addComponent(jTextField3,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                132,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                                .addComponent(jTextField1,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                71,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                .addPreferredGap(
-                                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                                .addComponent(jTextField4,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                132,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                .addComponent(jTextField9,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                71,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(jTextField10,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                132,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                .addComponent(jTextField7,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                71,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                .addComponent(jTextField11,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                71,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                .addComponent(jScrollPane1,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                .addGap(263, 263, 263)
-                                                                                                .addComponent(jButton1)))
-                                                                .addContainerGap(228, Short.MAX_VALUE))
-                                                .addGroup(layout.createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                                .addGap(113, 113, 113)
-                                                                                .addComponent(jTextField2,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                71,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addContainerGap(470,
-                                                                                                Short.MAX_VALUE))));
-                layout.setVerticalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addGap(36, 36, 36)
-                                                                .addComponent(jTextField3,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jTextField4,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jTextField1,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jTextField5,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jTextField6,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jTextField9,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jTextField10,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jTextField12,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jComboBox1,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(9, 9, 9)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jTextField8,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jRadioButton1)
-                                                                                .addComponent(jRadioButton2))
-                                                                .addGap(26, 26, 26)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(jTextField7,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(97, 97, 97)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(jScrollPane1,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jTextField11,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jButton1)
-                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE))
-                                                .addGroup(layout.createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                                .addGap(37, 37, 37)
-                                                                                .addComponent(jTextField2,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addContainerGap(581,
-                                                                                                Short.MAX_VALUE))));
-
-                pack();
-        }// </editor-fold>
-
-        private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+            enrollmentField.requestFocus();
+            return;
         }
 
-        private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+        // 2. Name Validation
+        if (name.isBlank() || !name.matches("[a-zA-Z ]+")) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Name should contain only alphabets",
+                    "Validation Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+            nameField.requestFocus();
+            return;
         }
 
-        private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+        // 3. Email Validation
+        if (email.isBlank() || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please enter a valid Email",
+                    "Validation Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+            emailField.requestFocus();
+            return;
         }
 
-        private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+        // 4. Password Validation
+        if (password.isBlank() || password.length() < 6) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Password must be at least 6 characters",
+                    "Validation Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+            passwordField.requestFocus();
+            return;
         }
 
-        private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+        // 5. Gender Validation
+        if (gender == "") {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please select Gender",
+                    "Validation Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+            return;
         }
 
-        private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+        // 6. Address Validation
+        if (address.isBlank()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please enter Address",
+                    "Validation Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+            addressArea.requestFocus();
+            return;
         }
 
-        private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+        // Registration Successful
+        JOptionPane.showMessageDialog(
+                this,
+                "Details:- \n\n"
+                        + "Enrollment No: " + erno + "\n"
+                        + "Name: " + name + "\n"
+                        + "Email: " + email + "\n"
+                        + "Password: " + password + "\n"
+                        + "Class: " + selectedClass + "\n"
+                        + "Gender: " + gender + "\n"
+                        + "Address: " + address,
+                "Registration Successful!!",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        clearForm();
+
+        enrollmentField.requestFocus();
+    }
+
+    private void clearForm() {
+        enrollmentField.setText("");
+        nameField.setText("");
+        emailField.setText("");
+        passwordField.setText("");
+        addressArea.setText("");
+
+        genderGroup.clearSelection();
+        classComboBox.setSelectedIndex(0);
+    }
+
+    public static void main(String[] args) {
+        // Set Nimbus Look and Feel
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
-        }
-
-        private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
-        }
-
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-                // Get values
-                String erno = jTextField4.getText().trim();
-                String name = jTextField3.getText().trim();
-                String email = jTextField6.getText().trim();
-                String password = jTextField10.getText().trim();
-                String address = jTextArea1.getText().trim();
-
-                // 1. Enrollment Number Validation
-                if (erno.isEmpty()) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Please enter Enrollment Number",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextField4.requestFocus();
-                        return;
-                }
-
-                if (!erno.matches("[0-9]+")) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Enrollment Number should contain only numbers",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextField4.requestFocus();
-                        return;
-                }
-
-                // 2. Name Validation
-                if (name.isEmpty()) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Please enter Name",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextField3.requestFocus();
-                        return;
-                }
-
-                if (!name.matches("[a-zA-Z ]+")) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Name should contain only alphabets",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextField3.requestFocus();
-                        return;
-                }
-
-                // 3. Email Validation
-                if (email.isEmpty()) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Please enter Email",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextField6.requestFocus();
-                        return;
-                }
-
-                if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Please enter a valid Email",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextField6.requestFocus();
-                        return;
-                }
-
-                // 4. Password Validation
-                if (password.isEmpty()) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Please enter Password",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextField10.requestFocus();
-                        return;
-                }
-
-                if (password.length() < 6) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Password must be at least 6 characters",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextField10.requestFocus();
-                        return;
-                }
-
-                // 5. Class Validation
-                if (jComboBox1.getSelectedItem() == null) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Please select Class",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jComboBox1.requestFocus();
-                        return;
-                }
-
-                String selectedClass = jComboBox1.getSelectedItem().toString();
-
-                // 6. Gender Validation
-                String gender = "";
-
-                if (jRadioButton1.isSelected()) {
-                        gender = "Male";
-                } else if (jRadioButton2.isSelected()) {
-                        gender = "Female";
-                }
-
-                if (gender.isEmpty()) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Please select Gender",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        return;
-                }
-
-                // 8. Address Validation
-                if (address.isEmpty()) {
-                        javax.swing.JOptionPane.showMessageDialog(
-                                        this,
-                                        "Please enter Address",
-                                        "Validation Error",
-                                        javax.swing.JOptionPane.ERROR_MESSAGE);
-                        jTextArea1.requestFocus();
-                        return;
-                }
-
-                // Registration Successful
-                javax.swing.JOptionPane.showMessageDialog(
-                                this,
-                                "Registration Successful!\n\n"
-                                                + "Enrollment No: " + erno + "\n"
-                                                + "Name: " + name + "\n"
-                                                + "Email: " + email + "\n"
-                                                + "Class: " + selectedClass + "\n"
-                                                + "Gender: " + gender,
-                                "Success",
-                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                // Clear form
-                jTextField4.setText("");
-                jTextField3.setText("");
-                jTextField6.setText("");
-                jTextField10.setText("");
-                jTextArea1.setText("");
-
-                buttonGroup1.clearSelection();
-
-                jComboBox1.setSelectedIndex(0);
-        }
-
-        /**
-         * @param args the command line arguments
-         */
-        public static void main(String args[]) {
-                /* Set the Nimbus look and feel */
-                // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-                // (optional) ">
-                /*
-                 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-                 * look and feel.
-                 * For details see
-                 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-                 */
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-                        logger.log(java.util.logging.Level.SEVERE, null, ex);
-                }
-                // </editor-fold>
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(() -> new P3().setVisible(true));
-        }
-
-        // Variables declaration - do not modify
-        private javax.swing.ButtonGroup buttonGroup1;
-        private javax.swing.JButton jButton1;
-        private javax.swing.JComboBox<String> jComboBox1;
-        private javax.swing.JRadioButton jRadioButton1;
-        private javax.swing.JRadioButton jRadioButton2;
-        private javax.swing.JScrollPane jScrollPane1;
-        private javax.swing.JTextArea jTextArea1;
-        private javax.swing.JTextField jTextField1;
-        private javax.swing.JTextField jTextField10;
-        private javax.swing.JTextField jTextField11;
-        private javax.swing.JTextField jTextField12;
-        private javax.swing.JTextField jTextField2;
-        private javax.swing.JTextField jTextField3;
-        private javax.swing.JTextField jTextField4;
-        private javax.swing.JTextField jTextField5;
-        private javax.swing.JTextField jTextField6;
-        private javax.swing.JTextField jTextField7;
-        private javax.swing.JTextField jTextField8;
-        private javax.swing.JTextField jTextField9;
-        // End of variables declaration
+        EventQueue.invokeLater(() -> {
+            P3 form = new P3();
+            form.setVisible(true);
+        });
+    }
 }
