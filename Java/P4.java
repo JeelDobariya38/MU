@@ -3,6 +3,8 @@ import java.awt.*;
 import java.sql.*;
 
 public class P4 extends JFrame {
+    private String DB_URL = "jdbc:mysql://localhost:3306/stud";
+
     private JLabel enrollmentLabel;
     private JLabel nameLabel;
     private JLabel emailLabel;
@@ -296,7 +298,7 @@ public class P4 extends JFrame {
     private boolean insertIntoRecordIntoDb(int enroll, String name, String email, String password, String selectedClass,
             String gender, String addr) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stud", "root", "");
+            Connection conn = DriverManager.getConnection(DB_URL, "root", "");
 
             PreparedStatement pst = conn
                     .prepareStatement(
