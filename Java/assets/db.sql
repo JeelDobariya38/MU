@@ -31,3 +31,16 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+--- P4
+
+CREATE TABLE IF NOT EXISTS stud (
+    enroll INTEGER, 
+    name VARCHAR(60),
+    email VARCHAR(60),
+    password VARCHAR(60),
+    class VARCHAR(8),
+    gender VARCHAR(8),
+    addr VARCHAR(160)
+);
