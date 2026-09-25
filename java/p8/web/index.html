@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input {
+            font-size: 2rem;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="calculator-card">
+    <form action="result.jsp" method="get">
+        <div class="form-group">
+            <label for="num1">First Number (a):</label>
+            <input type="number" value="38" step="10" id="num1" name="num1" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="num2">Second Number (b):</label>
+            <input type="number" value="0" step="10" id="num2" name="num2" required>
+        </div>
+        
+        <div class="btn-group">
+            <input type="submit" name="op" value="+">
+            <input type="submit" name="op" value="-">
+            <input type="submit" name="op" value="x">
+            <input type="submit" name="op" value="/">
+        </div>
+    </form>
+</div>
+</body>
+</html>

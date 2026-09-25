@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: black;
+                color: white;
+                text-align: center;
+                font-size: 2rem;
+                font-family: sans-serif;
+            }
+
+            form {
+                display: inline-block;
+                background-color: #2d68c4;
+                color: black;
+                padding: 25px;
+                border-radius: 8px;
+            }
+            
+            label {
+                display: inline-block;
+                margin-right: 5px;
+                color: #111;
+                font-size: 1.8rem;
+            }
+            
+            input {
+                border-radius: 2px;
+                font-size: 1.8rem;
+            }
+            
+            .field {
+                margin: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="margin: 20px">
+            <form action="login" method="POST">
+                <h1>Login Form</h1>
+
+                <div class="field">
+                    <label>Username:</label>
+                    <input name="username" placeholder="Enter username" />
+                </div>
+
+                <div class="field">
+                    <label>Password:</label>
+                    <input name="password" placeholder="Enter password" />
+                </div>
+
+                <div class="field">
+                    <input type="submit" value="login" />
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
