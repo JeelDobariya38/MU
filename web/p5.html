@@ -1,0 +1,229 @@
+<html lang="en">
+<head>
+    <title>Jeel Dobariya - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #011628;
+            color: #33526b;
+        }
+
+        header {
+            color: #677ff5;
+            text-align: center;
+            padding: 30px;
+        }
+
+        header h1 {
+            font-size: 35px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .profile {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #0e367e;
+            line-height: 120px;
+            margin: 0 auto 15px;
+            font-size: 35px;
+            font-weight: bold;
+            border: 4px solid #2e0590;
+        }
+
+        .container {
+            width: 85%;
+            margin: 5px auto;
+        }
+
+        section {
+            background-color: #ffffff;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        section h2 {
+            color: #3459b5;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+        }
+
+        .about {
+            text-align: justify;
+        }
+
+        .skills {
+            margin: 12px 0;
+            display: flex;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill {
+            background-color: #d9ddf1;
+            color: #092c6c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: 2px dotted #3034ac58;
+        }
+
+        .education {
+            border-bottom: 2px dashed #4941417c;
+            padding: 12px 0;
+            margin-bottom: 5px;
+        }
+
+        .education strong {
+            margin-right: 30px;
+        }
+
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .project {
+            width: 100%;
+            background-color: #0e266c;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #9a80dc;
+            color: #e8ebf5;
+        }
+
+        .project h3 {
+            margin-bottom: 10px;
+        }
+
+        td {
+            padding: 2px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            .education strong {
+                margin-right: 10px;
+            }
+
+            .projects {
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="profile">DJ</div>
+        <h1>Jeel Dobariya</h1>
+        <p>SDE-1 Intern, Microsoft</p>
+    </header>
+    <div class="container">
+        <section id="about" class="about">
+            <h2>About Me</h2>
+            <p>
+                I am a B.Tech Computer Engineering student at Marwadi University
+                with a strong interest in web development, Java, databases, and
+                software development. I enjoy learning new technologies, solving
+                programming problems, and building simple, practical, and
+                user-friendly applications. I am continuously improving my
+                technical and problem-solving skills while working on academic
+                and personal projects.
+            </p>
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills">
+                <span class="skill">HTML</span>
+                <span class="skill">CSS</span>
+                <span class="skill">Java</span>
+                <span class="skill">SQL</span>
+                <span class="skill">Github</span>
+                <span class="skill">Kotlin</span>
+            </div>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project">
+                    <h3>Passcodes</h3>
+                    <p>An mobile application for saveing
+                        user auth data locally. Expo-React-Native</p>
+                </div>
+                <div class="project">
+                    <h3>PromptTopia</h3>
+                    <p>A web-based system that helps students find & share
+                    and quality prompts for high degree of AI outcomes..</p>
+                </div>
+                <div class="project">
+                    <h3>Airline Management System</h3>
+                    <p>An airline reservation and ticket booking
+                    system developed using Java and Spring.</p>
+                </div>
+            </div>
+        </section>
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education">
+                <strong>Degree in Computer Engineering</strong>
+                <span>GTU - University</span>
+            </div>
+            <div class="education">
+                <strong>Higher Secondary Education</strong>
+                <span>Gujarat Board</span>
+            </div>
+        </section>
+        <section id="contact" class="contact">
+            <h2>Contact Me</h2>
+            <table>
+                <tr>
+                    <td><strong>Name:</strong></td>
+                    <td>:</td>
+                    <td>Jeel Dobariya</td>
+                </tr>
+                <tr>
+                    <td><strong>Email:</strong></td>
+                    <td>:</td>
+                    <td>jeeldobariya38@gmail.com</td>
+                </tr>
+                <tr>
+                    <td><strong>Phone:</strong></td>
+                    <td>:</td>
+                    <td>(+91) 987-XXXX-781</td>
+                </tr>
+                <tr>
+                    <td><strong>Location:</strong></td>
+                    <td>:</td>
+                    <td>Rajkot, India</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
