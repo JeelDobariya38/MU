@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<books>
+
+    <book>
+        <name>Java Programming</name>
+        <author>James Gosling</author>
+        <price>500</price>
+    </book>
+
+    <book>
+        <name>Web Technology</name>
+        <author>John Smith</author>
+        <price>650</price>
+    </book>
+    
+    <book>
+        <name>Feel Good Productivity</name>
+        <author>Ali Abdaal</author>
+        <price>2500</price>
+    </book>
+
+</books>
