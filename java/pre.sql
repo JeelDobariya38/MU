@@ -59,8 +59,13 @@ USE authdb;
 CREATE TABLE IF NOT EXISTS users (u_name VARCHAR(50), u_pass VARCHAR(50));
 INSERT INTO users VALUES ('mu', 'java');
 
+-- practical 11
+
+CREATE DATABASE IF NOT EXISTS employee_db;
+
 -- -- Clean UP
 
 -- DROP DATABASE IF EXISTS employee;
 -- DROP DATABASE IF EXISTS student;
 -- DROP DATABASE IF EXISTS authdb;
+-- DROP DATABASE IF EXISTS employee_db;
