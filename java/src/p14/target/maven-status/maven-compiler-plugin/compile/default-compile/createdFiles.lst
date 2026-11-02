@@ -1,0 +1,4 @@
+com\example\complaint\ComplaintController.class
+com\example\complaint\ComplaintManagementApplication.class
+com\example\complaint\Complaint.class
+com\example\complaint\ComplaintRepository.class
