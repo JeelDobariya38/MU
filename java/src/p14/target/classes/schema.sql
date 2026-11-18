@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS complaints (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
-    description VARCHAR(1000) NOT NULL,
-    status VARCHAR(30) NOT NULL DEFAULT 'Pending',
-    priority VARCHAR(20) NOT NULL DEFAULT 'Medium'
-);
